@@ -36,7 +36,7 @@ contract Evaluation {
     event interopCall(
         string interopDID, 
         string func, 
-        string value, 
+        uint value, 
         string callerDID, 
         uint nonce,
         string sig,
@@ -66,13 +66,12 @@ contract Evaluation {
      * @dev callInterop 
      * @param interopDID - DID of the system and smart contract to call 
      * @param func - function to call on smart contract
-     * @param value - value to pass
      * @param callerDID - DID of caller
      * @param nonce - unique number
      * @param sig - encrypted hash of preceeding values
     */
-    function callInterop(string memory interopDID, string memory func, string memory value, string memory callerDID, uint nonce, string memory sig) public ownerOnly {
-        emit interopCall(interopDID, func, value, callerDID, nonce, sig, block.number, msg.sender, tx.origin);
+    function callInterop(string memory interopDID, string memory func, string memory callerDID, uint nonce, string memory sig) public ownerOnly {
+        emit interopCall(interopDID, func, stateData, callerDID, nonce, sig, block.number, msg.sender, tx.origin);
     }
 }
     
